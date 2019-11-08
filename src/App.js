@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 
 function App() {
   const [tecnoloigas, SetTecnoloigas] = useState([]);
 
   const [newTch, setNewTch] = useState('');
 
-  function hadleAdd() {
+  const hadleAdd = useCallback(() => {
     SetTecnoloigas([...tecnoloigas, newTch]);
     setNewTch('');
-  }
+  }, [newTch, tecnoloigas]);
 
   useEffect(() => {
     const getTechs = localStorage.getItem('tech');
